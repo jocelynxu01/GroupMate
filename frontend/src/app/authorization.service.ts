@@ -26,6 +26,15 @@ export class AuthService {
     }
     return null;
   }
+  getCourseKey(){
+    return this.getStorage()?.getItem("course_key");
+  }
+  getAccessToken(){
+    return this.getStorage()?.getItem("access_token");
+  }
+  getRefreshToken(){
+    return this.getStorage()?.getItem("refresh_token");
+  }
 
   getRole(): Observable<string> {
     const storage = this.getStorage();
@@ -44,6 +53,8 @@ export class AuthService {
 
   logout(): void {
     this.getStorage()?.removeItem('access_token');
+    this.getStorage()?.removeItem('refresh_token');
+    this.getStorage()?.removeItem('course_key');
   }
 
   refresh_token(token: any): Observable<boolean> {

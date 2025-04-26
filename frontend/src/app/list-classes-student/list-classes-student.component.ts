@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../authorization.service';
 @Component({
   selector: 'app-list-classes-student',
   imports: [CommonModule, FormsModule],
@@ -10,14 +11,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './list-classes-student.component.css'
 })
 export class ListClassesStudentComponent {
-  constructor(private http: HttpClient, private router: Router){}
+  constructor(private http: HttpClient, private router: Router, private auth: AuthService){}
   courses : Array<String>= [];
   ngOnInit(): void {
     this.get_courses(); 
   }
   get_courses(){
     
-    const token = localStorage.getItem("access_token");
+    const token = this.auth.getAccessToken();
     if(!token){
       this.router.navigate(['/login']);
       return;

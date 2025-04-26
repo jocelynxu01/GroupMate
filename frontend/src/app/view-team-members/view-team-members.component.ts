@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../authorization.service';
 
 @Component({
   selector: 'app-view-team-members',
@@ -11,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './view-team-members.component.css'
 })
 export class ViewTeamMembersComponent {
-  constructor(private http: HttpClient, private router: Router){}
+  constructor(private http: HttpClient, private router: Router, private auth: AuthService){}
   
 
   ngOnInit(): void {
@@ -21,8 +22,8 @@ export class ViewTeamMembersComponent {
   team_members: Array<String> = []
   team_number = ''
   get_team_members(){
-    const course_key = localStorage.getItem("course_key")
-    const token = localStorage.getItem("access_token");
+    const course_key = this.auth.getCourseKey()
+    const token = this.auth.getAccessToken()
     console.log(course_key, token)
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const body = {
