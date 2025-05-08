@@ -1,0 +1,118 @@
+arxiv_category,description
+cs.AI,artificial intelligence
+cs.AR,hardware architecture
+cs.CC,computational complexity
+cs.CE,computer engineering
+cs.CG,computational geometry
+cs.CL,natural language processing
+cs.CR,cryptography and security
+cs.CV,computer vision
+cs.CY,computers and society
+cs.DB,databases
+cs.DC,distributed computing
+cs.DL,digital libraries
+cs.DM,discrete mathematics
+cs.DS,data structures and algorithms
+cs.ET,emerging technologies
+cs.FL,formal languages and automata
+cs.GL,general computer science
+cs.GR,graph theory
+cs.GT,game theory
+cs.HC,human-computer interaction
+cs.IR,information retrieval
+cs.IT,information theory
+cs.LG,machine learning
+cs.LO,logic in computer science
+cs.MA,multiagent systems
+cs.MM,multimedia
+cs.MS,mathematical software
+cs.NA,numerical analysis
+cs.NE,neural networks
+cs.NI,networking and internet architecture
+cs.OH,other computer science
+cs.OS,operating systems
+cs.PF,performance
+cs.PL,programming languages
+cs.RO,robotics
+cs.SC,symbolic computation
+cs.SD,sound
+cs.SE,software engineering
+cs.SI,social and information networks
+cs.SY,systems and control
+math.AC,commutative algebra
+math.AG,algebraic geometry
+math.AP,analysis of PDEs
+math.AT,algebraic topology
+math.CA,classical analysis
+math.CO,combinatorics
+math.CT,category theory
+math.CV,complex variables
+math.DG,differential geometry
+math.DS,dynamical systems
+math.FA,functional analysis
+math.GM,general mathematics
+math.GN,general topology
+math.GR,group theory
+math.GT,geometric topology
+math.HO,history of mathematics
+math.IT,information theory
+math.KT,K-theory and homology
+math.LO,logic
+math.MG,metric geometry
+math.MP,mathematical physics
+math.NA,numerical analysis
+math.NT,number theory
+math.OA,operator algebras
+math.OC,optimization and control
+math.PR,probability
+math.QA,quantum algebra
+math.RA,rings and algebras
+math.RT,representation theory
+math.SG,symplectic geometry
+math.SP,stochastic processes
+math.ST,statistics
+astro-ph,astrophysics
+cond-mat,condensed matter physics
+gr-qc,general relativity and quantum cosmology
+hep-ex,high energy physics - experiment
+hep-lat,high energy physics - lattice
+hep-ph,high energy physics - phenomenology
+hep-th,high energy physics - theory
+math-ph,mathematical physics
+nlin,nonlinear sciences
+nucl-ex,nuclear experiment
+nucl-th,nuclear theory
+physics,general physics
+quant-ph,quantum physics
+q-bio.BM,biomolecules
+q-bio.CB,cell behavior
+q-bio.GN,genomics
+q-bio.MN,molecular networks
+q-bio.NC,neuroscience
+q-bio.OT,other quantitative biology
+q-bio.PE,populations and evolution
+q-bio.QM,quantitative methods
+q-bio.SC,subcellular processes
+q-bio.TO,tissues and organs
+q-fin.CP,computational finance
+q-fin.EC,economics
+q-fin.GN,general quantitative finance
+q-fin.MF,mathematical finance
+q-fin.PM,portfolio management
+q-fin.PR,pricing of securities
+q-fin.RM,risk management
+q-fin.ST,statistical finance
+q-fin.TR,trading and market microstructure
+stat.AP,applied statistics
+stat.CO,computational statistics
+stat.ME,methodology
+stat.ML,statistical machine learning
+stat.OT,other statistics
+stat.TH,theory
+eess.AS,audio and speech processing
+eess.IV,image and video processing
+eess.SP,signal processing
+eess.SY,systems and control
+econ.EM,econometrics
+econ.GN,general economics
+econ.TH,economic theory

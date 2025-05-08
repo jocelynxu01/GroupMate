@@ -1,0 +1,154 @@
+,Course Number,Course Title
+0,CS 100,Computer Science Orientation
+1,CS 101,Intro Computing: Engrg & Sci
+2,CS 105,Intro Computing: Non-Tech
+3,CS 107,Data Science Discovery
+4,CS 124,Intro to Computer Science I
+5,CS 128,Intro to Computer Science II
+6,CS 173,Discrete Structures
+7,CS 199,CA Training
+8,CS 210,Ethical & Professional Issues
+9,CS 211,Ethical & Professional Conduct
+10,CS 222,Software Design Lab
+11,CS 225,Data Structures
+12,CS 233,Computer Architecture
+13,CS 307,Model & Learning in Data Sci
+14,CS 340,Intro to Computer Systems
+15,CS 357,Numerical Methods I
+16,CS 361,Prob & Stat for Computer Sci
+17,CS 374,Intro to Algs & Models of Comp
+18,CS 400,Accel Fund of Computing I
+19,CS 401,Accel Fund of Algorithms I
+20,CS 407,Cryptography
+21,CS 409,The Art of Web Programming
+22,CS 410,Text Information Systems
+23,CS 411,Database Systems
+24,CS 412,Introduction to Data Mining
+25,CS 413,Intro to Combinatorics
+26,CS 415,Game Development
+27,CS 418,Interactive Computer Graphics
+28,CS 421,Progrmg Languages & Compilers
+29,CS 422,Programming Language Design
+30,CS 423,Operating Systems Design
+31,CS 424,Real-Time Systems
+32,CS 425,Distributed Systems
+33,CS 426,Compiler Construction
+34,CS 427,Software Engineering I
+35,CS 433,Computer System Organization
+36,CS 437,Topics in Internet of Things
+37,CS 438,Communication Networks
+38,CS 439,Wireless Networks
+39,CS 440,Artificial Intelligence
+40,CS 441,Applied Machine Learning
+41,CS 444,Deep Learning for Compt Visn
+42,CS 445,Computational Photography
+43,CS 446,Machine Learning
+44,CS 447,Natural Language Processing
+45,CS 450,Numerical Analysis
+46,CS 460,Security Laboratory
+47,CS 461,Computer Security I
+48,CS 463,Computer Security II
+49,CS 464,Cyber Dystopia
+50,CS 465,User Interface Design
+51,CS 468,Tech and Advertising Campaigns
+52,CS 473,Algorithms
+53,CS 475,Formal Models of Computation
+54,CS 481,Adv Stochastic Process & Appl
+55,CS 483,Applied Parallel Programming
+56,CS 484,Parallel Programming
+57,CS 491 CAP,Adv Competitive Algorithm Prog
+58,CS 491 CB,Cyber Security Scholar Program
+59,CS 491 ECO,Excursions in Computing I
+60,CS 492,Senior Project I
+61,CS 498 RC1,Law \&Policy Issues in CS
+62,CS 508,Manycore Parallel Algorithms
+63,CS 511,Advanced Data Management
+64,CS 512,Data Mining Principles
+65,CS 521,Adv Topics in Pgm Systems
+66,CS 527,Topics in Software Engineering
+67,CS 537,Advanced Topics in IoT
+68,CS 538,Advanced Computer Networks
+69,CS 540,Deep Learning Theory
+70,CS 542,Stat Reinforcement Learning
+71,CS 543,Computer Vision
+72,CS 545,Machine Learning for Signals
+73,CS 546,Advanced Topics in Natural Language Processing
+74,CS 549,Seminar in Cognitive Science
+75,CS 562,"Adv Top in Sec, Priv and ML"
+76,CS 567,Social Spaces
+77,CS 571,Combinatorial Mathematics
+78,CS 574,Randomized Algorithms
+79,CS 576,Topics in Automated Deduction
+80,CS 579,Computational Complexity
+81,CS 580,Topics in Algrthmc Game Theory
+82,CS 582,ML for Bioinformatics
+83,CS 584,Embedded System Verification
+84,CS 591 ACT,Advanced Compiler Technology
+85,CS 591 IG,Distributed Systems Seminar
+86,CS 591 LRS,Improving Your Research Skills
+87,CS 591 MH,Scientific Computing Seminar
+88,CS 591 PHD,PHD Orientation Seminar
+89,CS 591 SCH,PhD Job Search Prep
+90,CS 591 SE,Software Engineering Seminar
+91,CS 591 SN,Systems and Networking Seminar
+92,CS 591 TA,Teaching Assistant Training
+93,CS 598 AO2,Foundations of Data Curation
+94,CS 598 CC1,Cloud Computing Capstone
+95,CS 598 EKS,"Smart cities, homes, & beyond"
+96,CS 598 JBR,ML for Software Engineering
+97,CS 598 KKH,ADV Comp. Topics in Robotics
+98,CS 598 PSO,Practical Statistical Learning
+99,CS 598 RAP,Cloud Stor Sys: Theory\&Practic
+100,CS 598 SFS,Computing & Global Developmnt
+101,CS 598 SHW,3-D Vision
+103,CS 102,Little Bits to Big Ideas
+115,CS 277,Algo & Data Stru for Data Sci
+121,CS 402,Accel Fund of Computing II
+122,CS 403,Accel Fund of Algorithms II
+133,CS 431,Embedded Systems
+135,CS 434,Real World Algorithms - IoT/DS
+136,CS 435,Cloud Networking
+141,CS 442,Trustworthy Machine Learning
+146,CS 448,Audio Computing Laboratory
+153,CS 477,Formal Software Devel Methods
+154,CS 482,Simulation
+158,CS 491 EIC,Excursions in computing II
+159,CS 493,"Senior Project II, ACP"
+160,CS 494,Senior Project II
+161,CS 498 DSO,Cloud Computing Applications
+162,CS 498 SCG,Computational Social Science
+163,CS 498 SCU,Computational Social Science
+164,CS 500,Broadening Particip in CS Ed
+165,CS 510,Advanced Information Retrieval
+166,CS 514,Adv Social and Info Networks
+168,CS 523,Advanced Operating Systems
+169,CS 524,Concurrent Progrmg Languages
+170,CS 525,Advanced Distributed Systems
+171,CS 526,Advanced Compiler Construction
+172,CS 533,Parallel Computer Architecture
+173,CS 534,Adv Topics in Comp Arch
+175,CS 555,Numerical Methods for PDEs
+176,CS 563,Advanced Computer Security
+177,CS 565,Ethics in AI
+178,CS 581,Algorithmic Genomic Biology
+180,CS 588,Autonomous Vehicle System Eng
+182,CS 591 FM,Formal Methods Seminar
+186,CS 598 APK,Lang & Abstractions for HPC
+187,CS 598 JGE,Advanced Data Structures
+188,CS 598 KCC,Using LLMs AKA ChatGPT
+189,CS 598 PEN,LLM Post-pretraining
+190,CS 598 PPM,Parallel Programming Models
+191,CS 598 PSR,Pseudorandomness
+242,CS 466,Introduction to Bioinformatics
+245,CS 474,Logic in Computer Science
+247,CS 476,Program Verification
+256,CS 498 TC3,Computational Geometry
+257,CS 498 TC4,Computational Geometry
+269,CS 547,Deep Learning
+271,CS 556,Iterative & Multigrid Methods
+288,CS 598 CSC,Topics in Graph Algorithms
+292,CS 598 KMC,Found. for Comp. Edu. Research
+293,CS 598 KPH,Foundations for Comp. Ed Res.
+298,CS 598 SMC,Methodological Pluralism
+299,CS 598 SPH,Methodological Pluralism
+300,CS 598 WSI,ADV Wireless Networks and IOT
