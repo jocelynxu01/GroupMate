@@ -1,40 +1,50 @@
 <form (ngSubmit)="fill_details()">
-    <h1>Provide Details for Team Matching</h1>
-  
-    <label for="vision_essay">Project Proposal:</label>
-    <textarea name="vision_essay" id="vision_essay" [(ngModel)]="vision_essay" required></textarea>
-    <br>
-    <label>Skills:</label>
-    <button type="button" (click)="add_skill()">&#43; Add Skill</button>
-    <br><br>
-   
-    <div *ngFor="let skill of skills; let i = index">
-      <input type="text"
-             name="skill_{{i}}"
-             [(ngModel)]="skill.skill"
-             placeholder="Type your skill"
-             required>
+       <h1>Provide Details for Team Matching</h1>
+     
+       <label for="vision_essay">Project Proposal:</label><br>
 
-    </div>
-    <label>Courses Taken:</label>
-    <button type="button" (click)="add_course()">&#43; Add Course</button>
-    <br><br>
-    
-    <div *ngFor="let course of courses; let i = index">
-      <input type="text"
-             name="course_code_{{i}}"
-             [(ngModel)]="course.course_code"
-             placeholder="Enter course code"
-             required>
+              <textarea  rows=15 style="width:100%" name="vision_essay" id="vision_essay" [(ngModel)]="vision_essay" required></textarea>
+       
+
+       <br>
+       <label>Skills:</label>
+       <button mat-flat-button type="button" (click)="add_skill()">&#43; Add Skill</button>
+       <br><br>
       
-      <input type="text"
-             name="course_name_{{i}}"
-             [(ngModel)]="course.course_name"
-             placeholder="Enter course name"
-             required>
-    </div>
-  
-    
-    <button type="submit">Register</button>
-  </form>
-  
+       <div *ngFor="let skill of skills; let i = index">
+       <mat-form-field>
+              <input matInput type="text"
+              name="skill_{{i}}"
+              [(ngModel)]="skill.skill"
+              placeholder="Type your skill"
+              required></mat-form-field>
+         
+   
+       </div>
+       <label>Courses Taken:</label>
+       <button mat-flat-button type="button" (click)="add_course()">&#43; Add Course</button>
+       <br><br>
+       
+       <div *ngFor="let course of courses; let i = index">
+              <mat-form-field>
+
+              
+         <input matInput type="text"
+                name="course_code_{{i}}"
+                [(ngModel)]="course.course_code"
+                placeholder="Enter course code"
+                required>
+              </mat-form-field>
+              <mat-form-field>
+         <input matInput type="text"
+                name="course_name_{{i}}"
+                [(ngModel)]="course.course_name"
+                placeholder="Enter course name"
+                required>
+              </mat-form-field>
+       </div>
+     
+       
+       <button mat-flat-button type="submit">Register</button>
+     </form>
+     

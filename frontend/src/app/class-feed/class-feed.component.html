@@ -1,13 +1,15 @@
-<div *ngFor="let detail of details" class="card">
-    <div class="card-header">
-        {{detail.name}} ({{detail.username}})
-    </div>
-    <div class="card-body">
-        <p>{{detail.project_proposal}}</p>
-    </div>
-    <div class="card-footer">
-        <div class="chip blue" *ngFor="let skill of detail.skills">{{skill}}</div>
-        
-        <div class="chip yellow" *ngFor="let course of detail.courses_taken">{{course}}</div>
-    </div>
-</div>
+<mat-card class="example-card" appearance="outlined" *ngFor="let detail of details">
+    <mat-card-header>
+      <mat-card-title>{{detail.name}} ({{detail.username}})</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{detail.project_proposal}}</p>
+    </mat-card-content>
+    <mat-card-footer class="example-card-footer">
+      <mat-chip-set>
+        <mat-chip  *ngFor="let skill of detail.skills">{{skill}}</mat-chip>
+        <mat-chip  selected *ngFor="let course of detail.courses_taken">{{course}}</mat-chip>
+      </mat-chip-set>
+    </mat-card-footer>
+    
+  </mat-card>

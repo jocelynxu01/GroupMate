@@ -2,14 +2,16 @@ import { Component } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { AuthService } from '../authorization.service';
 import { CommonModule } from '@angular/common';
+import {MatTableModule} from '@angular/material/table';
 
 @Component({
   selector: 'app-view-class-members',
-  imports: [CommonModule],
+  imports: [CommonModule,MatTableModule],
   templateUrl: './view-class-members.component.html',
   styleUrl: './view-class-members.component.css'
 })
 export class ViewClassMembersComponent {
+  displayedColumns: string[] = ['username', 'name'];
   members: { name: string; username: string }[] = [];
   constructor(private http: HttpClient, private auth: AuthService){}
   ngOnInit(){

@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../authorization.service';
 import { CommonModule } from '@angular/common';
-
+import {MatCardModule} from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
 @Component({
   selector: 'app-class-feed',
-  imports: [CommonModule],
+  imports: [CommonModule,MatCardModule, MatChipsModule],
   templateUrl: './class-feed.component.html',
   styleUrl: './class-feed.component.css'
 })

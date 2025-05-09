@@ -5,15 +5,34 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { HttpHeaders, HttpClient} from '@angular/common/http';
-
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, FormsModule, RouterOutlet],
+  imports: [CommonModule, 
+    FormsModule, 
+    RouterOutlet,
+     MatButtonModule, 
+     MatToolbarModule, 
+     MatIconModule,
+     MatSidenavModule, 
+     MatFormFieldModule,
+    MatSelectModule,
+    MatListModule,
+  MatCardModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  selectedCourse = '';
+  showFiller = true;
+  course_icon = "content_copy"
+  selectedCourse: string = '';
     instructor = false;
     student = false;
     courses: { course_name: string; course_key: string }[] = [];
@@ -31,8 +50,10 @@ export class HomeComponent {
       this.auth.logout()
       this.router.navigate(['/login'])
     }
-    onCourseChange(courseName: string): void {
-      const course = this.courses.find(c => c.course_name === courseName);
+    onCourseChange(): void {
+      
+      const course = this.courses.find(c => c.course_name === this.selectedCourse);
+      console.log(this.selectedCourse)
       if (course) {
         localStorage.setItem('course_key', course.course_key);  
       }
@@ -100,7 +121,7 @@ export class HomeComponent {
     }
     copyToClipBoard(){
       navigator.clipboard.writeText(this.course_key);
-      this.course_key = 'Copied'
+      this.course_icon = 'check_circle'
     }
     get_courses_for_student(){
       let token = this.auth.getStorage()?.getItem("access_token")
