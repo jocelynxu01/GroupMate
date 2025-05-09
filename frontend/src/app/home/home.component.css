@@ -24,3 +24,14 @@
 .menu a:hover {
     color: #007bff;
 }
+
+.key {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}

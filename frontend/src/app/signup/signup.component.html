@@ -15,11 +15,14 @@
 <label for="email">Email:</label>
 <input type="email" name="email" id="email" [(ngModel)]="email" required>
 <br>
-<label for="role">Role:</label>
-<div class="role-options">
-  <label><input type="radio" name="role" value="student"> Student</label>
-  <label><input type="radio" name="role" value="instructor"> Instructor</label>
-</div>  
+
+  <label for="role">Role:</label>
+  <div class="role-options">
+  <label *ngFor="let r of ['student', 'instructor']">
+    <input type="radio" name="role" [value]="r" [(ngModel)]="role">
+    {{ r | titlecase }}
+  </label>
+</div> 
 
 <br>
     <label for="password">Password:</label>

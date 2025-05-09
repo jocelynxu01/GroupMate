@@ -20,7 +20,7 @@ export class AuthService {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
   
-  private getStorage(): Storage | null {
+  getStorage(): Storage | null {
     if (isPlatformBrowser(this.platformId)) {
       return localStorage;
     }

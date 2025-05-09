@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../authorization.service';
 @Component({
   selector: 'app-fill-details',
   imports: [CommonModule, FormsModule],
@@ -12,15 +13,21 @@ import { FormsModule } from '@angular/forms';
 })
 export class FillDetailsComponent {
   courses: { course_code: string; course_name: string }[] = [];
+  skills: {skill:string}[]=[];
   vision_essay = ''
-  constructor(private http: HttpClient, private router: Router){};
+  constructor(private http: HttpClient, private router: Router, private auth: AuthService){};
   add_course(){
     this.courses.push({course_code:'', course_name:''});
+  }
+  add_skill(){
+    this.skills.push({skill:''});
   }
   fill_details(){
     const body = {
       "vision": this.vision_essay,
-      "courses_taken":this.courses
+      "courses_taken":this.courses,
+      "skills":this.skills,
+      "course_key": this.auth.getCourseKey()
     }
     const token = localStorage.getItem("access_token");
     if(!token){

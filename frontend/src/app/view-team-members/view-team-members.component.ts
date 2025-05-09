@@ -17,10 +17,11 @@ export class ViewTeamMembersComponent {
 
   ngOnInit(): void {
     this.get_team_members(); 
-    console.log('Course Key in OnInit:', localStorage.getItem('course_key'));
+    console.log('Course Key in OnInit:', this.auth.getStorage()?.getItem('course_key'));
   }
   team_members: Array<String> = []
   team_number = ''
+  message='Team allocation status'
   get_team_members(){
     const course_key = this.auth.getCourseKey()
     const token = this.auth.getAccessToken()
@@ -38,12 +39,16 @@ export class ViewTeamMembersComponent {
               this.team_members.push(member);
             }
             this.team_number = response.body.team
+            this.message=''
+          }
+          else{
+            this.message = response.body.message;
           }
           
         },
         error: (error) => {
-          console.error('Courses could not be retreived', error);
-          
+          console.error('Team details could not be retreived', error);
+          this.message = "Team not allotted yet"
         }
       });
     

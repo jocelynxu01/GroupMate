@@ -36,7 +36,11 @@ def get_classes(request):
     enrolled_courses = []
 
     for e in enrollments:
-        enrolled_courses.append(e.course.course_name)
+        course = {
+            'course_name': e.course.course_name,
+            'course_key':e.course.course_key
+        }
+        enrolled_courses.append(course)
 
     return Response({'enrolled_courses':enrolled_courses})
 
@@ -45,12 +49,16 @@ def get_classes(request):
 def fill_details(request):
     try:
         vision = request.data.get("vision")
+        skills = request.data.get("skills")
         course_key = request.data.get("course_key")
         courses = request.data.get("courses_taken")
         student = Profile.objects.get(user=request.user)
+        course = Course.objects.get(course_key=course_key)
         enrollment, _ = Student_Details.objects.get_or_create(
             student=student,
+            course=course,
             courses_taken=json.dumps(courses),
+            skills = json.dumps(skills),
             defaults={'vision': vision}
         )
         
@@ -68,9 +76,13 @@ def get_team_details(request):
     course_key = request.data.get("course_key")
     course = Course.objects.get(course_key=course_key)
     student_profile = Profile.objects.get(user=request.user)
+    print(request.user, course)
     student = EnrolledStudent.objects.get(student=student_profile,course=course)
     team_members = []
+    print('student is ',student)
+    print('student is in team number',student.team_number)
     if student.team_number:
+        print('student is in team number',student.team_number)
         team  = Team.objects.get(team_number=student.team_number.team_number)
         students_in_team = EnrolledStudent.objects.filter(team_number=team)
         team_members = []
@@ -78,5 +90,6 @@ def get_team_details(request):
             tm = Profile.objects.get(user__username=stu.student.user.username)
             team_members.append(tm.user.username)
 
-    return Response({"team_members": team_members,"team":student.team_number.team_number})
-    
+        return Response({"team_members": team_members,"team":student.team_number.team_number})
+    else:
+        return Response({"message":"Team not allotted yet!"},status=status.HTTP_500_INTERNAL_SERVER_ERROR)

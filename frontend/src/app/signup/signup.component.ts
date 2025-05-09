@@ -30,6 +30,7 @@ export class SignupComponent {
       last_name: this.last_name,
       role: this.role
     };
+    console.log(this.role)
     this.http.post<any>('http://127.0.0.1:8000/api/register/', register,{ observe: 'response' })
       .subscribe({
         next: (response) => {

@@ -1,37 +1,64 @@
-
 <div style="display: flex; flex-direction: column; height: 100vh;">
 
-    
-    <div style="background-color: #f8f9fa; padding: 10px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center;">
-      <div style="font-size: 24px; font-weight: bold;">Group Mate</div>
-      <button (click)="logout()" style="background-color: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
-        Logout
-      </button>
-    </div>
-  
-   
-    <div style="flex: 1; display: flex; overflow: hidden;">
-  
-     
-      <div class="menu" style="width: 200px; background-color: white; border-right: 1px solid #ddd; padding: 10px;">
-        <div *ngIf="student">
-          <a href="/student/join-class" style="display: block; padding: 8px;">Join Course</a>
-          <a href="/student/get-classes" style="display: block; padding: 8px;">View Joined Classes</a>
-          <a href="/student/fill-details" style="display: block; padding: 8px;">Add Details</a>
-          <a href="/student/view-team" style="display: block; padding: 8px;">View Team Members</a>
-        </div>
-  
-        <div *ngIf="instructor">
-          <a href="/create-course" style="display: block; padding: 8px;">Create Course</a>
-          <a href="/instructor/get-class" style="display: block; padding: 8px;">View Course</a>
-        </div>
-      </div>
-  
-     
-      <div style="flex: 1; padding: 20px; overflow-y: auto;">
-        <router-outlet></router-outlet>
-      </div>
-  
-    </div>
+  <!-- Header Section -->
+  <div style="background-color: #f8f9fa; padding: 10px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center;">
+    <div style="font-size: 24px; font-weight: bold;">Group Mate</div>
+    <button (click)="logout()" style="background-color: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+      Logout
+    </button>
   </div>
-  
+
+  <!-- Main Content Section -->
+  <div style="flex: 1; display: flex; overflow: hidden;">
+
+    <!-- Menu for Students -->
+    <div class="menu" style="width: 200px; background-color: white; border-right: 1px solid #ddd; padding: 10px;" *ngIf="student">
+      <a href="/student/join-class" style="display: block; padding: 8px;" (click)="get_courses_for_student()">Join Course</a>
+      <a href="">
+        <label for="student-courses" style="display: block; padding: 8px;">View Courses</label>
+      </a>
+      <select name="student-classes" id="student-courses" [(ngModel)]="selectedCourse" (ngModelChange)="onCourseChange($event)">
+        <option style="display: block; padding: 8px" *ngFor="let course of courses" [value]="course.course_name">
+          {{ course.course_name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Menu for Instructors -->
+    <div class="menu" style="width: 200px; background-color: white; border-right: 1px solid #ddd; padding: 10px;" *ngIf="instructor">
+      <a href="/create-course" style="display: block; padding: 8px;" (click)="get_courses_for_instructor()">Create Course</a>
+      <label for="/instructor-courses" style="display: block; padding: 8px;">View Courses ⟲</label>
+      <select name="/instructor-classes" id="instructor-courses" [(ngModel)]="selectedCourse" (ngModelChange)="onCourseChange($event)">
+        <option style="display: block; padding: 8px" *ngFor="let course of courses" [value]="course.course_name">
+          {{ course.course_name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Additional Menu for Active Courses (Instructors) -->
+    <div *ngIf="is_course_active() && instructor" class="menu" style="width: 200px; background-color: white; border-right: 1px solid #ddd; padding: 10px;">
+      <a href="#" (click)="setCourseKey($event)" style="display: block; padding: 8px;">Course Key</a>
+      <a href="/view-class-members" style="display: block; padding: 8px;">View Class Members</a>
+      <a href="/view-class-feed" style="display: block; padding: 8px;">Class Feed</a>
+      <a href="/instructor/generate" style="display: block; padding: 8px;">Run team generator</a>
+    </div>
+    <!-- Additional Menu for Active Courses (Students) -->
+    <div *ngIf="is_course_active() && student" class="menu" style="width: 200px; background-color: white; border-right: 1px solid #ddd; padding: 10px;">
+      <a href="/student/fill-details" style="display: block; padding: 8px;">Add Details</a>
+      <a href="/student/view-team" style="display: block; padding: 8px;">View Team Members</a>
+      <a href="/view-class-members" style="display: block; padding: 8px;">View Class Members</a>
+      <a href="/view-class-feed" style="display: block; padding: 8px;">Class Feed</a>
+    </div>
+   
+    <!-- Main Content Area -->
+    <div style="flex: 1; padding: 20px; overflow-y: auto;">
+      <div *ngIf="show_course_key">
+        <h2 style="display: block; padding: 8px;">Share the following course key with students to join the course: {{selectedCourse}}</h2>
+        
+        <button class="key" (click)="copyToClipBoard()">{{course_key}}</button>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>

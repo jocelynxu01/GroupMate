@@ -1,11 +1,25 @@
 <form (ngSubmit)="fill_details()">
     <h1>Provide Details for Team Matching</h1>
   
-    <label for="vision_essay">Vision Essay:</label>
+    <label for="vision_essay">Project Proposal:</label>
     <textarea name="vision_essay" id="vision_essay" [(ngModel)]="vision_essay" required></textarea>
     <br>
-  
+    <label>Skills:</label>
+    <button type="button" (click)="add_skill()">&#43; Add Skill</button>
+    <br><br>
+   
+    <div *ngFor="let skill of skills; let i = index">
+      <input type="text"
+             name="skill_{{i}}"
+             [(ngModel)]="skill.skill"
+             placeholder="Type your skill"
+             required>
+
+    </div>
     <label>Courses Taken:</label>
+    <button type="button" (click)="add_course()">&#43; Add Course</button>
+    <br><br>
+    
     <div *ngFor="let course of courses; let i = index">
       <input type="text"
              name="course_code_{{i}}"
@@ -20,8 +34,7 @@
              required>
     </div>
   
-    <button type="button" (click)="add_course()">&#43; Add Course</button>
-    <br><br>
+    
     <button type="submit">Register</button>
   </form>
   

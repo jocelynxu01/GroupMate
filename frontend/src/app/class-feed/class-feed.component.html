@@ -1,0 +1,13 @@
+<div *ngFor="let detail of details" class="card">
+    <div class="card-header">
+        {{detail.name}} ({{detail.username}})
+    </div>
+    <div class="card-body">
+        <p>{{detail.project_proposal}}</p>
+    </div>
+    <div class="card-footer">
+        <div class="chip blue" *ngFor="let skill of detail.skills">{{skill}}</div>
+        
+        <div class="chip yellow" *ngFor="let course of detail.courses_taken">{{course}}</div>
+    </div>
+</div>

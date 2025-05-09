@@ -1,5 +1,6 @@
-<h3>{{team_number}}</h3>
+{{message}}
+<h3 *ngIf="message==''">Team number: {{team_number}}</h3>
 <div *ngFor="let member of team_members">
-    <h4>{{ member}}</h4>
+    {{ member}}
     
  </div>
