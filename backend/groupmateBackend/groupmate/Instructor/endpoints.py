@@ -76,8 +76,10 @@ def run_team_generator(request):
             'courses_taken':json.loads(details.courses_taken),
         }
         students.append(student)
-
-        run_model(json.dumps(students))
+    print(json.dumps(students))
+    run_model(json.dumps(students))
         #return a different message for failure based on what run_model returns
-        return Response({'message':'Successfully created teams'},status=status.HTTP_200_OK)
+    print('response is',Response({'message':'Successfully created teams'},status=status.HTTP_200_OK))
+        
+    return Response({'message':'Successfully created teams'},status=status.HTTP_200_OK)
 

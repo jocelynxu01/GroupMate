@@ -53,7 +53,9 @@ def fill_details(request):
         course_key = request.data.get("course_key")
         courses = request.data.get("courses_taken")
         student = Profile.objects.get(user=request.user)
+        print(student)
         course = Course.objects.get(course_key=course_key)
+        print(course)
         enrollment, _ = Student_Details.objects.get_or_create(
             student=student,
             course=course,
@@ -66,6 +68,7 @@ def fill_details(request):
             enrollment.vision = vision
             enrollment.save()
         enrollment.save()
+        print(enrollment)
         return Response({'message':f'Successfully filled details'},status=status.HTTP_200_OK)
     except Exception as e:
         return Response({'message':f'Error while filling details: {e}'},status=status.HTTP_500_INTERNAL_SERVER_ERROR)

@@ -6,8 +6,6 @@ from groupmate.model_classes.EnrolledStudent import EnrolledStudent
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from groupmate.model_classes.Details import Student_Details
-from groupmate.model_classes.Team import Team
-from .models import Profile
 
 
 @api_view(['POST'])
@@ -44,7 +42,7 @@ def get_class_feed(request):
                 'name': member.student.user.first_name + " " + member.student.user.last_name,
                 'project_proposal': details.vision,
                 'skills': [skill['skill'] for skill in json.loads(details.skills)],
-                'courses_taken': [f"{course['course_code']}:{course['course_name']}" for course in json.loads(details.courses_taken)]
+                'courses_taken': [f"{course['course_key']} {course['course_name']}" for course in json.loads(details.courses_taken)]
             }
             students.append(student)
         except Student_Details.DoesNotExist:
