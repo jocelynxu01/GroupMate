@@ -74,9 +74,15 @@ def run_model(
     students_sorted = sorted(students, key=lambda x: x["vision_score"], reverse=True)
     n = len(students_sorted)
     third = n // 3
-    visionaries = students_sorted[:third]
-    collaborators = students_sorted[third:2*third]
-    enablers = students_sorted[2*third:]
+    remainder = n % 3
+
+    vision_count = third
+    collab_count = third + remainder  
+    enable_count = third
+
+    visionaries = students_sorted[:vision_count]
+    collaborators = students_sorted[vision_count:vision_count + collab_count]
+    enablers = students_sorted[vision_count + collab_count:]
 
     print(f"Visionaries: {len(visionaries)}, Collaborators: {len(collaborators)}, Enablers: {len(enablers)}")
 
