@@ -1,0 +1,220 @@
+[
+  {
+    "id": "stu_3000",
+    "first_name": "Megan",
+    "last_name": "Chang",
+    "email": "megan.chang@example.com",
+    "skills": [
+        "transformers (Hugging Face)", "LlamaIndex", "NetworkX",     "Python",  "JavaScript",  "Vertex AI",  "MongoDB", "Rasa", "D3.js", "ZeroMQ", "AWS", "Go", "JavaScript"
+    ],
+    "courses": [
+      "Advanced Operating Systems",
+      "Adv Competitive Algorithm Prog",
+      "Software Design Lab",
+      "Stat Reinforcement Learning",
+      "Advanced Data Management"
+    ],
+    "vision": "Today we are bombarded with information but many of us are not truly informed on many topics. We get our news based on attention-grabbing headlines with small snippets of what is going on, and this kind of environment is flooded with disinformation. The core challenge isn't accessing information; it's the ability to meaningfully inform oneself, to construct a coherent picture from the fragmented digital landscape.\n\nImagine a tool designed to address this: The Contextualizer. Instead of a search engine, it is a sense-making engine. Using conversational and semantic AI, it grasps intent, detects bias, and understands the historical and societal context surrounding any piece of information to provide a holistic and nuanced perspective on any topic. When presented with a news headline, a viral social media post, or a complex policy document, the Contextualizer assesses the reliability of the source, tracing its origins, identifying potential biases, and evaluating its track record for accuracy. Simultaneously, it reconstructs the timeline of the event or issue, placing it within a broader framework of the present situation. The Contextualizer does not present a single, definitive truth but instead gathers and summarizes a range of perspectives.\n\nThe Contextualizer is not intended to replace, but instead enhance critical thinking, serving as a powerful tool in the information age. By providing context, revealing biases, and presenting multiple perspectives, it enables users to cut through the noise and distinguish between information and disinformation.\n\n#vision #intelligentagent\n"
+  },
+  {
+    "id": "stu_3001",
+    "first_name": "James",
+    "last_name": "Patel",
+    "email": "james.patel@example.com",
+    "skills": [
+        "Transformer", "Rasa", "Neo4J", "Python", "JavaScript", "SQL", "Kubernetes", "D3.js", "CUDA", "SOCKETS.io", "LangChain", "HayStack", "Grafana", "GraphQL", "ZeroQ"
+    ],
+    "courses": [
+      "Discrete Structures",
+      "Deep Learning for Compt Visn",
+      "Social Spaces",
+      "Iterative & Multigrid Methods"
+    ],
+    "vision": "#productivity #vision #othertool\nCultural misunderstandings has been a problem although technology advances in translation and communication. The real challenge lies not in translating words, but also in the complex web of cultural contexts, unspoken assumptions, and emotional resonances, which shape how people from different backgrounds perceive and interpret the world. Therefore, I would imagine a deep culture translator goes beyond simple translation to facilitate true cross-cultural understanding. It would be able to analyze patterns of thought, communication styles, and cultural frameworks across different societies. It would create a dynamic model of how concepts, emotions, and social interactions are understood and expressed in different cultural contexts."
+  },
+  {
+    "id": "stu_3002",
+    "first_name": "Olivia",
+    "last_name": "Smith",
+    "email": "olivia.smith@example.com",
+    "skills": [
+        "Transformer", "Rasa", "Neo4J", "Python", "JavaScript", "SQL", "Kubernetes", "D3.js", "CUDA", "SOCKETS.io", "LangChain", "HayStack", "Grafana", "GraphQL", "ZeroQ"
+    ],
+    "courses": [
+      "Practical Statistical Learning",
+      "Text Information Systems",
+      "CA Training"
+    ],
+    "vision": "Every day, doctors and nurses spend hours writing patient notes, searching medical records, and keeping up with new research. We can use an AI-powered assistant designed to ease this burden. It listens during patient visits, automatically generating accurate summaries and treatment suggestions based on medical history and the latest guidelines. Instead of spending late nights on paperwork, doctors can focus on patient care. It also highlights important research tailored to each physician’s specialty, ensuring they never miss a breakthrough. With its seamless integration into hospitals and clinics, the agent turns overwhelming medical data into clear, actionable insights—helping doctors make faster, more informed decisions and improving healthcare for everyone.\n\n#vision #healthcare\n"
+  },
+  {
+    "id": "stu_3003",
+    "first_name": "Liam",
+    "last_name": "Lee",
+    "email": "liam.lee@example.com",
+    "skills": [
+        "LlamaIndex",
+            "LangChain",
+            "OpenAI", "FastAPI",
+            "Flask",
+            "Django",
+            "Google Cloud Platform (GCP)",
+         "Python", "JavaScript", "spaCY", "Next.js"
+    ],
+    "courses": [
+      "Advanced Compiler Construction",
+      "Accel Fund of Algorithms II",
+      "Software Engineering I"
+    ],
+    "vision": "#vision #education #productivity #intelligentagent\n\nI imagine a world where every piece of information we encounter—whether a snippet from a blog, a compelling quote in a book, or a quick insight during a lecture—automatically becomes part of our personal knowledge ecosystem. This “Personal Knowledge Curator” would act as an intelligent companion, seamlessly capturing, tagging, and sorting everything we read, watch, or discuss. Drawing on powerful AI-driven analytics, it would connect the dots across our various interests and projects, surfacing hidden relationships and suggesting new areas to explore.\n\nThe tool would help students rapidly build a tailored library of concepts, enabling them to quickly see how one idea relates to another. Professionals would find it indispensable for staying on top of rapidly evolving fields, while everyday learners could enjoy easier recall of fascinating discoveries. Over time, this curator would refine its understanding of our unique goals, shaping insights that fit our personal styles of learning and thinking. In short, it wouldn’t just store knowledge—it would spark creativity and fuel continuous growth."
+  },
+  {
+    "id": "stu_3004",
+    "first_name": "Emma",
+    "last_name": "Brown",
+    "email": "emma.brown@example.com",
+    "skills": [
+        "TypeScript", "R", "SQL", "HTML", "CSS",   "Unity3D",
+            "Unreal Engine", "ARKit",  "FAISS",  "C++"
+    ],
+    "courses": [
+      "Ethical & Professional Conduct",
+      "Topics in Algrthmc Game Theory",
+      "Advanced Computer Networks",
+      "Artificial Intelligence",
+      "3-D Vision"
+    ],
+    "vision": "In our rapidly evolving digital age, one significant challenge we face is the overwhelming abundance of information generated across the internet from countless sources. People often need to browse multiple applications and platforms to find truly valuable information, where \"value\" is inherently subjective and varies from person to person. For instance, some might consider sports transfer news most valuable, while others prioritize different types of information entirely.\n\nUnfortunately, humans have limited willpower each day, and decision-making, even for seemingly simple choices like what to eat for lunch or whether to read news before responding to emails, can be mentally taxing. This is where an innovative AI solution could make a meaningful difference in our daily lives.\n\nI envision an AI system that could automatically tag and categorize information, allowing users to easily access relevant content through personalized tags of their choosing. Moreover, the system could dynamically generate daily to-do lists based on event priorities and user preferences, helping manage decision fatigue and optimize daily productivity.\n\nThe system would also serve as a personal digital archive, storing both user-uploaded content (such as photos and personal documents) and saved important information from various sources. What makes this system particularly powerful is its ability to retrieve stored information through natural language queries. Users could simply describe what they're looking for in conversational language, and the system would quickly locate and present relevant information from their personal archive.\n\nThis intelligent assistant would effectively address the problem of information overload and decision fatigue while creating a more personalized and efficient daily experience for users. By combining AI-powered organization with natural language processing, it would transform how we interact with and manage our digital lives.\n\n#vision"
+  },
+  {
+    "id": "stu_3005",
+    "first_name": "Noah",
+    "last_name": "Kim",
+    "email": "noah.kim@example.com",
+    "skills": [
+        "Unreal Engine",  "scikit-learn", "TensorFlow", "PyTorch", "LangChain", "C++", "Python", "GCP", "LightFM", "Contextual Bandits"
+    ],
+    "courses": [
+      "Autonomous Vehicle System Eng",
+      "Ethical & Professional Conduct",
+      "CA Training",
+      "Advanced Compiler Technology",
+      "Cyber Dystopia"
+    ],
+    "vision": "In the age of information explosion, human beings need more efficient ways to acquire knowledge. I envision an immersive Intelligent Knowledge Universe (IIKU) that combines VR/AR with AI, allowing users to \"step into\" the world of knowledge and experience information for themselves. Doctors can see 3D images of patients through AR during surgery, scientists can collaborate in real time in virtual LABS, and students can \"travel\" through history or explore the universe. IIKU enhances understanding through intelligent recommendation, data interaction and visualization, completely changes the way of learning, research and decision-making, and enables knowledge acquisition from reading to immersive experience, promoting the evolution of human intelligence.\n\n#vision\n\n"
+  },
+  {
+    "id": "stu_3006",
+    "first_name": "Sophia",
+    "last_name": "Garcia",
+    "email": "sophia.garcia@example.com",
+    "skills": [
+        "Python", "HTML", "CSS", "TensorFlow",
+           "spaCy", "NLTK", "Docker"
+    ],
+    "courses": [
+      "Software Design Lab",
+      "Audio Computing Laboratory",
+      "Software Engineering Seminar",
+      "Computing & Global Developmnt"
+    ],
+    "vision": "If there is a tool called the “Data Life Optimizer,” it could address the issue of information overload, helping people find balance, work efficiently, stay healthy, and build stronger connections.\n\nThis tool, powered by artificial intelligence and machine learning, would filter the overwhelming influx of daily information, such as tasks, news updates, and social interactions, identifying only what truly matters while eliminating distractions and noise. It would intelligently plan daily schedules based on user preferences and emotional states, ensuring time is allocated efficiently. On the social side, it could analyze interaction patterns and remind users to maintain meaningful connections with family and friends, preventing relationships from being neglected due to busy schedules. \n\n#vision #life"
+  },
+  {
+    "id": "stu_3007",
+    "first_name": "Aiden",
+    "last_name": "Davis",
+    "email": "aiden.davis@example.com",
+    "skills": [
+        "Python", "C++", "C#",  "TypeScript",
+          "SQL",  "Pandas", "scikit-learn"
+    ],
+    "courses": [
+      "Distributed Systems",
+      "Distributed Systems Seminar",
+      "Cloud Stor Sys: Theory\\&Practic"
+    ],
+    "vision": "#vision #education #communication\n\nHuman cognition has always been limited by the senses and the way information is transmitted. We acquire knowledge indirectly through symbols, words and images, which are then transformed into understanding by the brain, a process that is both time-consuming and distorted, creating a gap between the cognitive and the real.\n\nI want to design a system for immersing consciousness. It connects to our brain and allows people to not just get information about something, but to experience it directly. It's a shift from “knowing” to “experiencing”.\n\nThe user's consciousness is able to enter the information environment and generate real perceptions and memories. Knowledge is no longer a symbol to be decoded, but a direct experience. This approach eliminates the intermediate links in traditional information acquisition, dramatically increasing the efficiency and depth of understanding. This way of understanding can transcend the limits of time and space.\n\nThis will transform the fundamental way we interact with information, enabling humans to break through the traditional limits of cognition and establish a more direct connection to knowledge."
+  },
+  {
+    "id": "stu_3008",
+    "first_name": "Isabella",
+    "last_name": "Martinez",
+    "email": "isabella.martinez@example.com",
+    "skills": [
+        "R", "SQL", "Sentiment & Emotion Recognition",
+        "Chart.js", "D3.js",  "AWS"
+    ],
+    "courses": [
+      "Algorithmic Genomic Biology",
+      "Advanced Computer Networks",
+      "Applied Parallel Programming",
+      "Advanced Compiler Technology"
+    ],
+    "vision": "#vision #emotion \nWhat if there is a tool that can only only process information, but also understands the emotions behind it? In our society, despite how hard we try to be fair and professional, there are always moments that people might be tired and driven to certain unwanted feelings which can potentially shape our choices or words. Imagine an emotional navigator which can visualize emotional undercurrents through feedback (maybe visual with colors), it would be so beneficial for different types of settings - professional meetings, personal reflections, or even just everyday interactions. This tool will not try to control feelings, rather it should create awareness for people to realize stress, frustrations, or unconscious bias. Think of it as an emotional compass, helping individuals and teams pause, recalibrate, and approach problems with clarity."
+  },
+  {
+    "id": "stu_3009",
+    "first_name": "Lucas",
+    "last_name": "Taylor",
+    "email": "lucas.taylor@example.com",
+    "skills": [
+        "JavaScript", "SQL", "Rust", "Swift", "Kotlin", "Sensor Integration & IoT", "gRPC", "FastAPI"
+    ],
+    "courses": [
+      "Advanced Compiler Construction",
+      "Senior Project I",
+      "Trustworthy Machine Learning",
+      "Senior Project II"
+    ],
+    "vision": "One area where data analysis is still in its early stages is sports. In recent years, a large amount of data is being captured from sports. However, most of the analysis is done offline, after the fact. Developments in AR and AI will be key to unlock effective realtime data analysis in sports. Coaches could use real time analysis to perform corrections. Players could have access to tactical analysis data based on live situations. Trainers could have access to AI-powered insights to look for fatigue markers and other physiological indicators. This could also improve the fans’ experience by giving them AR overlays of stats and other technical details in a simple and easily graspable manner. By leveraging the power of AR, real-time data analysis, and AI, this tool could significantly improve athletic performance, reduce injuries, and enhance the overall sports experience for both participants and spectators.\n#vision #sports #decisionsupport"
+  },
+  {
+    "id": "stu_3010",
+    "first_name": "Mia",
+    "last_name": "Nguyen",
+    "email": "mia.nguyen@example.com",
+    "skills": [
+        "SentenceTransformers", "scikit-learn", "XGBoost", "LightGBM", "FAST API", "PyTorch", "TensorFlow", "Python", "Firebase"
+    ],
+    "courses": [
+      "Numerical Analysis",
+      "Intro to Computer Science II",
+      "Advanced Topics in Natural Language Processing",
+      "Adv Topics in Comp Arch",
+      "Excursions in Computing I"
+    ],
+    "vision": "Today, the proliferation of information continues to pressure individuals from all walks of life, and people often feel fatigued in their data management and decision-making processes. Human need a tool to solve this problem: AI situational assistant. Such assistants use advanced algorithms to filter and prioritize information to ensure that users receive only the most relevant and usable data, effectively reducing the burden of information overload.\n\nLet's imagine a future where professionals, from educators to doctors, use AI situational assistants to optimize their daily work. For example, a doctor, upon entering a clinic, instantly receives, via his or her AI assistant, a summary of the patient's concise medical history and a customized treatment plan based on the latest medical research and the individual's medical history. Similarly, teachers are able to use AI assistants to keep track of their students' level of understanding and emotional state in real time so that they can adjust their lecture plans and teaching methods in real time.\n\nIf the AI situational assistant of the future is successfully developed and popularized, it will undoubtedly make our information interactions more efficient and our decision-making processes more informed. Although this essay is only based on my imagination, I look forward to a future where human and AI work better together.\n\n#vision #intelligentagent #education #healthcare"
+  },
+  {
+    "id": "stu_3011",
+    "first_name": "Ethan",
+    "last_name": "Wilson",
+    "email": "ethan.wilson@example.com",
+    "skills": [
+        "Go", "SQL", "HTML", "CSS",  "TensorFlow", "Next.js",  "LangChain", "ROS",  "WebRTC" , "AllenAPI", "VUForia", "Rasa", "Sagemaker", "scikit", "LangChain"
+    ],
+    "courses": [
+      "Cryptography",
+      "Seminar in Cognitive Science",
+      "ADV Comp. Topics in Robotics"
+    ],
+    "vision": "One of the best things that happened in the 21st century is that we are blessed with more information than we could ever possibly consume in a lifetime, available at our fingertips through phones, PCs, or interactive devices (smart gadgets). Current systems help us organize this information with relevance and also suggest related information that fuels our exploratory instincts. The problem arises in the gap between these systems understanding our intent and tailoring information based on short-term or long-term goals.\n\nI would like to design simple systems that help me achieve my short-term goals through systematic, minimal processing of information while keeping me in the loop wherever necessary. Beyond automating and saving a lot of brain power on regular information, I want to build intelligent systems that assist in achieving goals related to gaining knowledge in particular domains. The downfall of current search engines is that they optimize for all of my interests, which may not align with the constructive goals I wish to achieve.\n\nThe information delivery and consumption would be completely tailored to my preferred methods of consuming information (auditory, textual, images, or videos). These systems would be able to translate formats of information to best suit individual needs and continuously improve by making knowledge more accessible to society while learning from it.\n\nThese systems would be more advanced than current ones, not only acting on existing information but also helping users consume it more efficiently, allowing humans to achieve as many goals as possible and even leapfrog through mundane tasks.\n\n#vision #productivity"
+  },
+  {
+    "id": "stu_3012",
+    "first_name": "Avery",
+    "last_name": "Anderson",
+    "email": "avery.anderson@example.com",
+    "skills": [
+        "OpenCV", "LangChain", "LlamaIndex", "Hugging Face Transformers", "Python", "C++ ", "GitLAb", "FFmpeg", "OpenAI", "NumPy", "Pandas", "AWS", "Bash", "HTML", "CSS"
+    ],
+    "courses": [
+      "Using LLMs AKA ChatGPT",
+      "Ethical & Professional Conduct",
+      "User Interface Design",
+      "Intro to Algs & Models of Comp"
+    ],
+    "vision": "In 2025, augmented reality (AR) evolves from entertainment and retail to become a foundational tool for solving humanity’s cognitive challenges. Imagine AR MindSpace, a revolutionary platform that overlays intelligent, personalized knowledge directly onto your visual field, transforming how we interact with vast amounts of data.\n\nAR MindSpace addresses today’s pressing pain point: the overwhelming complexity of information in daily life. With it, students in a lecture see floating annotations, contextual definitions, and real-time links to historical precedents, dynamically tailored to their learning preferences. In healthcare, a surgeon accesses real-time procedural overlays during complex operations, backed by AI-driven insights from global case studies.\n\nThe system’s intelligent agents continuously map user goals, habits, and learning styles. Through AR glasses or contact lenses, MindSpace empowers users to trace associative trails, much like Vannevar Bush’s “memex.” A researcher could synthesize vast interdisciplinary data streams into cohesive visual maps, seamlessly transitioning between granular details and broad patterns.\n\nBy blending context-aware personalization and decision support, AR MindSpace doesn't merely store knowledge—it transforms how humans think, learn, and innovate. Through this tool, society gains not only efficiency but the wisdom to tackle its most complex problems collaboratively.\n\n#vision #education #intelligentagent #decisionsupport"
+  }
+]
