@@ -36,7 +36,7 @@ def get_class_feed(request):
     for member in class_members:
         try:
             details = Student_Details.objects.get(student=member.student, course=course)
-            print(details.courses_taken)
+            # print(details.courses_taken)
             student = {
                 'username': member.student.user.username,
                 'name': member.student.user.first_name + " " + member.student.user.last_name,

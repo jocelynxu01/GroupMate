@@ -4,10 +4,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../authorization.service';
+import {MatCardModule} from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-view-team-members',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule,MatIconModule,FormsModule,MatCardModule,MatChipsModule,MatExpansionModule],
   templateUrl: './view-team-members.component.html',
   styleUrl: './view-team-members.component.css'
 })
@@ -21,6 +25,9 @@ export class ViewTeamMembersComponent {
   }
   team_members: Array<String> = []
   team_number = ''
+  needed_skills: Array<String> = []
+  current_skills: Array<String>=[]
+  project_ideas: Array<String> = []
   message='Team allocation status'
   get_team_members(){
     const course_key = this.auth.getCourseKey()
@@ -39,6 +46,9 @@ export class ViewTeamMembersComponent {
               this.team_members.push(member);
             }
             this.team_number = response.body.team
+            this.needed_skills = response.body.needed_skills
+            this.current_skills = response.body.current_skills
+            this.project_ideas = response.body.project_ideas
             this.message=''
           }
           else{

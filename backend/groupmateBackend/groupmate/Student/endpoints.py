@@ -9,7 +9,7 @@ from rest_framework import status
 from groupmate.model_classes.Details import Student_Details
 from groupmate.model_classes.Team import Team
 from ..models import Profile
-
+import ast
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated, IsStudent])
@@ -87,12 +87,15 @@ def get_team_details(request):
     if student.team_number:
         print('student is in team number',student.team_number)
         team  = Team.objects.get(team_number=student.team_number.team_number)
+        needed_skills = ast.literal_eval(team.needed_skills)
+        current_skills = ast.literal_eval(team.current_skills)
+        project_ideas = team.project_ideas
         students_in_team = EnrolledStudent.objects.filter(team_number=team)
         team_members = []
         for stu in students_in_team:
             tm = Profile.objects.get(user__username=stu.student.user.username)
             team_members.append(tm.user.username)
 
-        return Response({"team_members": team_members,"team":student.team_number.team_number})
+        return Response({"team_members": team_members,"team":student.team_number.team_number,"needed_skills":needed_skills, "current_skills":current_skills, "project_ideas":project_ideas})
     else:
         return Response({"message":"Team not allotted yet!"},status=status.HTTP_500_INTERNAL_SERVER_ERROR)

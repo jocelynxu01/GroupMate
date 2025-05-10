@@ -1,6 +1,50 @@
-{{message}}
-<h3 *ngIf="message==''">Team number: {{team_number}}</h3>
-<div *ngFor="let member of team_members">
-    {{ member}}
+<mat-card class="example-card" appearance="outlined">
+    <mat-card-header>
+      <mat-card-title><mat-icon>groups</mat-icon>Team: {{team_number}}</mat-card-title>
+      
+      
+    </mat-card-header>
+    <mat-card-content>
+        
+      <p>{{project_ideas}}</p>
+    </mat-card-content>
+    <mat-card-footer class="example-card-footer">
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title><mat-icon>person</mat-icon>Team members </mat-panel-title>
+                  
+                </mat-expansion-panel-header>
+                <mat-chip-set>
+                  <mat-chip  *ngFor="let member of team_members">{{member}}</mat-chip>
+      
+                </mat-chip-set>
+              </mat-expansion-panel>
+          </mat-accordion>
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title><mat-icon>psychology_alt</mat-icon>Current skills </mat-panel-title>
+                
+              </mat-expansion-panel-header>
+              <mat-chip-set>
+                <mat-chip  *ngFor="let skill of current_skills">{{skill}}</mat-chip>
+
+              </mat-chip-set>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title> <mat-icon>psychology</mat-icon>Needed skills </mat-panel-title>
+                
+              </mat-expansion-panel-header>
+              <mat-chip-set>
+             
+                <mat-chip  selected *ngFor="let skill of needed_skills">{{skill}}</mat-chip>
+              </mat-chip-set>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card-footer>
     
- </div>
+  </mat-card>

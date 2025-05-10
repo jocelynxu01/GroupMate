@@ -10,6 +10,8 @@ from transformers import AutoTokenizer, AutoModel
 
 
 class SciBERTRegressor(nn.Module):
+    
+        
     def __init__(self, model_name: str):
         super().__init__()
         self.encoder = AutoModel.from_pretrained(model_name)
@@ -29,18 +31,18 @@ class SciBERTRegressor(nn.Module):
 
 
 def run_model(
-    student_file: str = "data/vision_students.json",
-    model_checkpoint: str = "/content/drive/MyDrive/model_checkpoint/scibert_regressor.pt",
-    skills_file: str = "data/skills_list.txt",
+    students,
+    model_checkpoint: str = "groupmate/Team_Generator/data/scibert_regressor.pt",
+    skills_file: str = "groupmate/Team_Generator/data/skills_list.txt",
     output_file: str = "groups_output.json",
     device: torch.device = torch.device("cuda" if torch.cuda.is_available() else "cpu"),
-    api_key: str = "YOUR_GOOGLE_API_KEY"
+    api_key: str = "AIzaSyB6KoDBjmmXKojcYnLX69gL84LENQr-dmI"
 ):
     # ------------------------
     # Step 0: Load student data
     # ------------------------
-    with open(student_file, "r") as f:
-        students = json.load(f)
+    # with open(student_file, "r") as f:
+    #     students = json.load(f)
 
     # ------------------------
     # Step 1: Predict vision scores
@@ -52,7 +54,8 @@ def run_model(
     model_sci.eval()
 
     for student in students:
-        essay = student["vision"]
+        print('student:',student)
+        essay = student["project_proposal"]
         inputs = tokenizer(
             essay,
             return_tensors="pt",
@@ -111,7 +114,7 @@ def run_model(
             return list(np.random.choice(total_skills, size=3, replace=False))
 
     for grp in groups:
-        essays = " ".join([m["vision"] for m in grp["members"]])
+        essays = " ".join([m["project_proposal"] for m in grp["members"]])
         grp["needed_skills"] = infer_skills(essays)
 
     # ------------------------
@@ -167,22 +170,17 @@ def run_model(
         return llm.generate_content([prompt]).text.strip()
 
     for grp in groups:
-        essays = " ".join([m["vision"] for m in grp["members"]])
+        essays = " ".join([m["project_proposal"] for m in grp["members"]])
         grp["project_ideas"] = suggest_projects(essays, grp["current_skills"])
 
     # ------------------------
     # Final output
     # ------------------------
-    for i, grp in enumerate(groups, 1):
-        member_ids = [m["id"] for m in grp["members"]]
-        print(f"\n--- Group {i} ---")
-        print("Members:", member_ids)
-        print("Skills:", grp["current_skills"])
-        print("Projects:", grp["project_ideas"])
+    
 
     with open(output_file, "w") as f:
         json.dump({"groups": groups}, f, indent=4)
 
+    return groups
 
-if __name__ == "__main__":
-    run_model()
+

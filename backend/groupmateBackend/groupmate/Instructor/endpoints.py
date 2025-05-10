@@ -31,30 +31,17 @@ def get_classes(request):
     serializer = CourseSerializer(courses, many=True)
     return Response(serializer.data)
 
-@api_view(['POST'])
-@permission_classes([IsAuthenticated, IsInstructor])
-def add_team_members(request):
-    try:
-        course_key = request.data.get("course_key")
-        course = Course.objects.get(course_key=course_key)
-        team = Team.objects.create(course = course)
-  
-        team_members = request.data.get("team_members")
+def assign_teams_helper(course_key, team_members,needed_skills, current_skills, project_ideas):
+    
+    course = Course.objects.get(course_key=course_key)
+    team = Team.objects.create(course = course, needed_skills=needed_skills, current_skills=current_skills, project_ideas=project_ideas)
+
+    for i in team_members:
+        student = Profile.objects.get(user__username=i)
+        enrolled = EnrolledStudent.objects.get(student=student, course=course)
+        enrolled.team_number = team
+        enrolled.save()
         
-        for i in team_members:
-            try:
-                student = Profile.objects.get(user__username=i)
-                enrolled = EnrolledStudent.objects.get(student=student, course=course)
-                enrolled.team_number = team
-                enrolled.save()
-            except Exception as e:
-                return Response(
-                    {'error': f"Student '{i}' is not enrolled in course '{course.course_name}'."},
-                    status=status.HTTP_400_BAD_REQUEST
-                )
-        return Response({"message":f"Team members are added to team {team.team_number}"})
-    except Exception as e:
-        return Response(f"Error happened while adding members to team: {e}",status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated,IsInstructor])
@@ -76,10 +63,21 @@ def run_team_generator(request):
             'courses_taken':json.loads(details.courses_taken),
         }
         students.append(student)
-    print(json.dumps(students))
-    run_model(json.dumps(students))
-        #return a different message for failure based on what run_model returns
-    print('response is',Response({'message':'Successfully created teams'},status=status.HTTP_200_OK))
+    # print(json.dumps(students))
+    try:
+        groups = run_model(students)
+    except Exception as e:
+        return Response({'message':f'Creating teams failed {e}'},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    for group in groups:
+        member_ids = [m["username"] for m in group["members"]]
+        try:
+            assign_teams_helper(course_key=course_key,team_members=member_ids,needed_skills=group["needed_skills"],current_skills=group["current_skills"],project_ideas=group["project_ideas"])
+        except Exception as e:
+            return Response({'message':f'Creating teams failed {e}'},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    #return a different message for failure based on what run_model returns
+    print('response is',Response({'message':f'Successfully created {len(groups)} teams'},status=status.HTTP_200_OK))
         
     return Response({'message':'Successfully created teams'},status=status.HTTP_200_OK)
 
