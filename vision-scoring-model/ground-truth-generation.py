@@ -163,7 +163,7 @@ with open(CLEAN_DATA_PATH, "r") as f:
 
 paper_matrix = np.vstack(paper_vectors)
 
-sample_size = 20000 (10% of total papers) 
+sample_size = 20000  
 indices = np.random.choice(len(paper_matrix), size=sample_size, replace=False)
 paper_matrix = paper_matrix[indices]
 paper_ids = [paper_ids[i] for i in indices]
