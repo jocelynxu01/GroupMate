@@ -34,11 +34,11 @@ GroupMate consists of the following modular components:
 
 ![GroupMate Architecture](data/img2.png)
 ---
-## 👥 User Roles & Workflow
+## User Roles & Workflow
 
 GroupMate supports two main user types, each with distinct responsibilities in the team formation process:
 
-### 👨‍🎓 Students
+### Students
 
 - Join a course using a unique code provided by the instructor.
 - Submit:
@@ -53,7 +53,7 @@ GroupMate supports two main user types, each with distinct responsibilities in t
 
 ---
 
-### 👩‍🏫 Instructors
+### Instructors
 
 - Register and create a course on the platform.
 - Share course code to onboard students.
@@ -79,7 +79,7 @@ GroupMate supports two main user types, each with distinct responsibilities in t
 
 ---
 
-## 🙌 Acknowledgements
+## Acknowledgements
 
 - Based on research inspirations from [Belbin Team Roles](https://www.belbin.com/about/belbin-team-roles)
 - Dataset courtesy of [arXiv](https://www.kaggle.com/datasets/Cornell-University/arxiv)
