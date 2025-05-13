@@ -1,0 +1,16 @@
+# Core libraries
+torch>=1.10.0
+transformers>=4.30.0
+scikit-learn>=1.0.0
+numpy>=1.21.0
+tqdm>=4.60.0
+pandas>=1.3.0
+
+# Sentiment Analysis
+vaderSentiment
+
+# JSON handling (standard, included in Python ≥3.6)
+# json
+
+# If running on GPU (optional, but recommended)
+# Make sure CUDA version is compatible with your PyTorch install
