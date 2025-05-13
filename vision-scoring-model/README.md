@@ -49,14 +49,14 @@ This will fine-tune a SciBERT model to predict continuous novelty scores.
 python inference.py --input_file path_to_essays.jsonl --output_file predictions.jsonl
 ```
 
-##Heuristic Signals Used
+## Heuristic Signals Used
 
 Semantic Distance: Measured by comparing essay embeddings to domain centroids.
 Lexical Novelty: Based on TF-IDF similarity to common essay patterns.
 Entropy of Tags: Captures interdisciplinary depth using category entropy.
 These are used as weak supervision for training the regressor.
 
-##Input Format
+## Input Format
 
 Each vision essay should be a JSONL entry like:
 
@@ -68,7 +68,7 @@ Each vision essay should be a JSONL entry like:
   "courses": ["AI Ethics", "Crypto Systems"]
 }
 ```
-##Output Format
+## Output Format
 ```
 {
   "student_id": "stu_3005",
