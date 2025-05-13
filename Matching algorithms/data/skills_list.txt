@@ -1,0 +1,38 @@
+Natural Language Processing & Understanding
+Machine Learning & Deep Learning
+Recommender Systems & Personalization
+Multimodal Data Processing (text, audio, video, images)
+Speech-to-Text & Text-to-Speech
+Knowledge Graphs & Semantic Search
+Data Engineering & ETL Pipelines
+User Profiling & Context Modeling
+UX/UI Design & Accessibility
+DevOps & Scalable Architecture
+Real-time Data Processing & Streaming
+Computer Vision & Object Tracking
+Augmented Reality Development
+Sensor Integration & IoT
+Edge Computing & Optimization
+Biomechanics & Sports Science
+Networking & Low-Latency Protocols
+Data Visualization & UX Design
+DevOps & CI/CD
+Sentiment & Emotion Recognition
+Affective Computing
+Real-time Data Streaming
+Signal Processing (for voice/biometric data)
+API Design & Integration
+Ethics & Privacy in AI
+Human-Computer Interaction
+Signal Processing & EEG/MEG Analysis
+Neural Decoding & Brain–Computer Interfaces
+Virtual Reality / Augmented Reality Development
+Real-time Systems & Low-Latency Programming
+3D Graphics & Simulation
+Neuroscience & Cognitive Modeling
+Data Engineering & Streaming
+Ethics & Neurosecurity
+UX/UI & Experience Design
+Time-Series Analysis
+Authentication & Security Best Practices
+UX/UI Design Principles
