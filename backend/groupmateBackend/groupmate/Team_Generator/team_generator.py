@@ -1,192 +1,246 @@
 import json
 import numpy as np
 import pandas as pd
-from sklearn.metrics.pairwise import cosine_similarity
-import google.generativeai as genai
+from itertools import cycle
 import torch
 import torch.nn as nn
-from itertools import cycle
 from transformers import AutoTokenizer, AutoModel
+from sklearn.metrics.pairwise import cosine_similarity
+import google.generativeai as genai
 
+# ------------------------
+# CONFIGURATION
+# ------------------------
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-class SciBERTRegressor(nn.Module):
-    
-        
-    def __init__(self, model_name: str):
-        super().__init__()
-        self.encoder = AutoModel.from_pretrained(model_name)
-        hidden_size = self.encoder.config.hidden_size
-        self.regressor = nn.Sequential(
-            nn.Linear(hidden_size, 128),
-            nn.ReLU(),
-            nn.Dropout(0.1),
-            nn.Linear(128, 1),
-            nn.Sigmoid()  # output ∈ [0,1]
-        )
-
-    def forward(self, input_ids, attention_mask):
-        outputs = self.encoder(input_ids=input_ids, attention_mask=attention_mask)
-        pooled = outputs.pooler_output
-        return self.regressor(pooled).squeeze(1)
+# Models for vision‐score regression (SciBERT) and embeddings (MPNet)
+REGRESSOR_NAME = "allenai/scibert_scivocab_uncased"
+EMBEDDING_MODEL_NAME = "sentence-transformers/all-mpnet-base-v2"
 
 
 def run_model(
-    students,
-    model_checkpoint: str = "groupmate/Team_Generator/data/scibert_regressor.pt",
-    skills_file: str = "groupmate/Team_Generator/data/skills_list.txt",
+    student_file: str = "data/vision_students.json",
+    model_checkpoint: str = "model_checkpoint/scibert_regressor.pt",
+    skills_file: str = "data/skills_list.txt",
     output_file: str = "groups_output.json",
-    device: torch.device = torch.device("cuda" if torch.cuda.is_available() else "cpu"),
-    api_key: str = "AIzaSyB6KoDBjmmXKojcYnLX69gL84LENQr-dmI"
+    device: torch.device = DEVICE,
+    api_key: str = "YOUR_API_KEY"
 ):
     # ------------------------
-    # Step 0: Load student data
+    # LOAD TOKENIZERS & MODELS
     # ------------------------
-    # with open(student_file, "r") as f:
-    #     students = json.load(f)
+    class SciBERTRegressor(nn.Module):
+        def __init__(self, model_name):
+            super().__init__()
+            self.encoder = AutoModel.from_pretrained(model_name)
+            self.regressor = nn.Sequential(
+                nn.Linear(self.encoder.config.hidden_size, 128),
+                nn.ReLU(),
+                nn.Dropout(0.1),
+                nn.Linear(128, 1),
+                nn.Sigmoid()
+            )
+        def forward(self, input_ids, attention_mask):
+            out = self.encoder(input_ids=input_ids, attention_mask=attention_mask)
+            return self.regressor(out.pooler_output).squeeze(1)
+
+    tokenizer_reg = AutoTokenizer.from_pretrained(REGRESSOR_NAME)
+    model_reg = SciBERTRegressor(REGRESSOR_NAME).to(device)
+    model_reg.load_state_dict(
+        torch.load(model_checkpoint, map_location=device)
+    )
+    model_reg.eval()
+
+    tokenizer_emb = AutoTokenizer.from_pretrained(EMBEDDING_MODEL_NAME)
+    model_emb = AutoModel.from_pretrained(EMBEDDING_MODEL_NAME).to(device)
+    model_emb.eval()
 
     # ------------------------
-    # Step 1: Predict vision scores
+    # LOAD STUDENT DATA
     # ------------------------
-    MODEL_NAME = "allenai/scibert_scivocab_uncased"
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-    model_sci = SciBERTRegressor(MODEL_NAME).to(device)
-    model_sci.load_state_dict(torch.load(model_checkpoint, map_location=device))
-    model_sci.eval()
+    with open(student_file) as f:
+        students = json.load(f)
 
+    # ------------------------
+    # STEP 1: Compute vision_score & embeddings
+    # ------------------------
     for student in students:
-        print('student:',student)
-        essay = student["project_proposal"]
-        inputs = tokenizer(
-            essay,
-            return_tensors="pt",
-            truncation=True,
-            padding="max_length",
-            max_length=512
-        )
-        with torch.no_grad():
-            score = model_sci(
-                input_ids=inputs["input_ids"].to(device),
-                attention_mask=inputs["attention_mask"].to(device)
-            ).item()
-        student["vision_score"] = score
+        text = student["vision"]
 
-    # sort and split into tiers
+        # vision score
+        inputs = tokenizer_reg(text, return_tensors="pt",
+                               truncation=True, padding="max_length", max_length=512)
+        with torch.no_grad():
+            vs = model_reg(
+                input_ids=inputs.input_ids.to(device),
+                attention_mask=inputs.attention_mask.to(device)
+            ).item()
+        student["vision_score"] = vs
+
+        # embedding
+        emb_inputs = tokenizer_emb(text, return_tensors="pt",
+                                   truncation=True, padding="max_length", max_length=256)
+        with torch.no_grad():
+            emb_out = model_emb(**{k: v.to(device) for k, v in emb_inputs.items()})
+        if hasattr(emb_out, "pooler_output"):
+            emb = emb_out.pooler_output.cpu().numpy()
+        else:
+            emb = emb_out.last_hidden_state.mean(dim=1).cpu().numpy()
+        student["embedding"] = emb
+
+    # ------------------------
+    # STEP 2: Sort & split into pools
+    # ------------------------
     students_sorted = sorted(students, key=lambda x: x["vision_score"], reverse=True)
     n = len(students_sorted)
     third = n // 3
-    remainder = n % 3
+    visionaries  = students_sorted[:third]
+    collaborators = students_sorted[third:2*third]
+    enablers      = students_sorted[2*third:]
 
-    vision_count = third
-    collab_count = third + remainder  
-    enable_count = third
-
-    visionaries = students_sorted[:vision_count]
-    collaborators = students_sorted[vision_count:vision_count + collab_count]
-    enablers = students_sorted[vision_count + collab_count:]
-
-    print(f"Visionaries: {len(visionaries)}, Collaborators: {len(collaborators)}, Enablers: {len(enablers)}")
-
-    # ------------------------
-    # Step 2: Initialize groups
-    # ------------------------
     groups = [
         {"members": [v], "needed_skills": [], "current_skills": []}
         for v in visionaries
     ]
 
     # ------------------------
-    # Step 3: Infer needed skills
+    # STEP 3: Infer skills needed (LLM)
     # ------------------------
     genai.configure(api_key=api_key)
-    llm = genai.GenerativeModel("models/gemini-1.5-flash")
+    model_llm = genai.GenerativeModel("models/gemini-1.5-flash")
 
-    with open(skills_file, "r") as f:
-        total_skills = [line.strip() for line in f]
+    with open(skills_file) as f:
+        all_skills = [l.strip() for l in f]
 
-    def infer_skills(essays: str):
-        prompt = (
-            "Based on these group vision essays, pick 5–7 skills from the list:\n\n"
-            f"{', '.join(total_skills)}\n\n"
-            f"Essays:\n{essays}\n\n"
-            "Respond with a comma-separated list of chosen skills."
-        )
+    def infer_needed_skills(essays: str):
+        prompt = f"""
+Based on these vision essays, select 5–7 skills from:
+{', '.join(all_skills)}
+
+Essays:
+{essays}
+
+Return a comma-separated list of chosen skills.
+"""
         try:
-            resp = llm.generate_content([prompt]).text
-            picks = [s.strip() for s in resp.split(",")]
-            return [s for s in picks if s in total_skills]
-        except Exception:
-            # fallback
-            np.random.seed(hash(essays) % 2**32)
-            return list(np.random.choice(total_skills, size=3, replace=False))
+            resp = model_llm.generate_content([prompt]).text
+            skills = [s.strip() for s in resp.split(",") if s.strip() in all_skills]
+            if skills:
+                return skills
+        except:
+            pass
+        np.random.seed(hash(essays) & 0xffffffff)
+        return list(np.random.choice(all_skills, size=3, replace=False))
 
     for grp in groups:
-        essays = " ".join([m["project_proposal"] for m in grp["members"]])
-        grp["needed_skills"] = infer_skills(essays)
+        essays = " ".join([m["vision"] for m in grp["members"]])
+        needed = infer_needed_skills(essays)
+        grp["needed_skills"] = needed
 
     # ------------------------
-    # Step 4: Assign collaborators
+    # STEP 4: Assign collaborators with weighted scoring
     # ------------------------
-    def missing(grp):
-        return set(grp["needed_skills"]) - set(grp["current_skills"])
+    def group_embedding(group):
+        embs = np.vstack([m["embedding"] for m in group["members"]])
+        return embs.mean(axis=0, keepdims=True)
 
-    grp_cycle = cycle(groups)
+    remaining = collaborators[:]
+    assigned = True
 
-    while collaborators:
+    while remaining and assigned:
         assigned = False
-        for _ in range(len(groups)):
-            grp = next(grp_cycle)
-            miss = missing(grp)
-            for c in collaborators[:]:
-                if miss.intersection(c["skills"]):
-                    grp["members"].append(c)
-                    grp["current_skills"].extend(c["skills"])
-                    collaborators.remove(c)
-                    assigned = True
-                    break
-        if not any(missing(g) for g in groups):
-            break
-        if not assigned:
-            # just fill smallest groups
-            while collaborators:
-                tgt = min(groups, key=lambda g: len(g["members"]))
-                c = collaborators.pop(0)
-                tgt["members"].append(c)
-                tgt["current_skills"].extend(c["skills"])
-            break
+        for grp in groups:
+            needed = set(grp["needed_skills"]) - set(grp["current_skills"])
+            if not needed:
+                continue
 
-    # ------------------------
-    # Step 5: Assign enablers to fill
-    # ------------------------
+            g_emb = group_embedding(grp)
+            scores = []
+            for c in remaining:
+                v_sim      = cosine_similarity(g_emb, c["embedding"])[0,0]
+                skill_frac = len(needed & set(c["skills"])) / len(needed)
+                score      = 0.3 * v_sim + 0.7 * skill_frac
+                scores.append((c, score))
+
+            best_c, best_score = max(scores, key=lambda x: x[1])
+            if needed & set(best_c["skills"]):
+                grp["members"].append(best_c)
+                grp["current_skills"].extend(best_c["skills"])
+                remaining.remove(best_c)
+                assigned = True
+
+    for c in remaining:
+        grp_smallest = min(groups, key=lambda g: len(g["members"]))
+        grp_smallest["members"].append(c)
+        grp_smallest["current_skills"].extend(c["skills"])
+    remaining.clear()
+
+    # STEP 5: Assign enablers by skill until all slots filled
+    remaining_enablers = enablers[:]
     for grp in sorted(groups, key=lambda g: len(g["members"])):
-        while len(grp["members"]) < 4 and enablers:
-            e = enablers.pop(0)
-            grp["members"].append(e)
-            grp["current_skills"].extend(e["skills"])
+        while len(grp["members"]) < 4 and remaining_enablers:
+            missing = set(grp["needed_skills"]) - set(grp["current_skills"])   
+            scores = [(e, len(missing & set(e["skills"])) / (len(missing) if missing else 1))
+                      for e in remaining_enablers]
+            best_e, best_score = max(scores, key=lambda x: x[1])
+            grp["members"].append(best_e)
+            grp["current_skills"].extend(best_e["skills"])
+            remaining_enablers.remove(best_e)
+
+    for e in remaining_enablers:
+        grp_smallest = min(groups, key=lambda g: len(g["members"]))
+        grp_smallest["members"].append(e)
+        grp_smallest["current_skills"].extend(e["skills"])
 
     # ------------------------
-    # Step 6: Suggest project ideas
+    # STEP 6: Suggest project ideas (LLM)
     # ------------------------
     def suggest_projects(essays: str, skills: list[str]):
-        prompt = (
-            "Based on the following vision essays and skills, suggest two project ideas:\n\n"
-            f"Essays:\n{essays}\n\n"
-            f"Skills: {', '.join(skills)}\n\n"
-            "Return as a numbered list."
-        )
-        return llm.generate_content([prompt]).text.strip()
+        prompt = f"""
+Vision Essays:
+{essays}
+
+Skills:
+{', '.join(skills)}
+
+Suggest:
+1. One project based on the essays.
+2. One project leveraging the skills.
+"""
+        return model_llm.generate_content([prompt]).text.strip()
 
     for grp in groups:
-        essays = " ".join([m["project_proposal"] for m in grp["members"]])
-        grp["project_ideas"] = suggest_projects(essays, grp["current_skills"])
+        essays = " ".join([m["vision"] for m in grp["members"]])
+        skills = grp["current_skills"]
+        grp["project_ideas"] = suggest_projects(essays, skills)
 
     # ------------------------
-    # Final output
+    # OUTPUT RESULTS
     # ------------------------
-    
+
+    for i, grp in enumerate(groups, 1):
+        member_ids = [m["id"] for m in grp["members"]]
+        print(f"\n--- Group {i} ---")
+        print("Members:", member_ids)
+        print("Skills:", grp["current_skills"])
+        print("Projects:", grp["project_ideas"])
+
+    def convert_ndarrays(obj):
+        if isinstance(obj, dict):
+            for k, v in list(obj.items()):
+                if isinstance(v, np.ndarray):
+                    obj[k] = v.tolist()
+                else:
+                    convert_ndarrays(v)
+        elif isinstance(obj, list):
+            for item in obj:
+                convert_ndarrays(item)
+
+    convert_ndarrays(groups)
 
     with open(output_file, "w") as f:
         json.dump({"groups": groups}, f, indent=4)
 
-    return groups
 
-
+if __name__ == "__main__":
+    run_model()
