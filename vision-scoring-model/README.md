@@ -20,6 +20,11 @@ vision-scoring-model/
 ├── synthetic_vision_ideas_filled.jsonl # JSONL file of synthetic or collected vision essays with metadata
 ```
 ---
+## Dataset
+
+Before running any scripts, download the arXiv Metadata Dataset from Kaggle [Here](https://www.kaggle.com/datasets/Cornell-University/arxiv).
+
+Place the downloaded file (e.g., arxiv-metadata-oai-snapshot.json) into the root of this repository.
 
 ## Quickstart
 
@@ -52,8 +57,11 @@ python inference.py --input_file path_to_essays.jsonl --output_file predictions.
 ## Heuristic Signals Used
 
 Semantic Distance: Measured by comparing essay embeddings to domain centroids.
+
 Lexical Novelty: Based on TF-IDF similarity to common essay patterns.
+
 Entropy of Tags: Captures interdisciplinary depth using category entropy.
+
 These are used as weak supervision for training the regressor.
 
 ## Input Format
